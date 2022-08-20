@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form th:action="@{/calcular}" th:object="${calculadora}" method="post">
+        <input type="number" th:field="*{operando1}"/>
+        <input type="number" th:field="*{operando2}"/>
+        <select th:field="*{operador}">
+            <option value="+">Suma</option>
+            <option value="-">Resta</option>
+        </select>
+        <input type="submit" value="Calcular"/>
+    </form>
+
+    <p th:text="${resultado}"></p>
+
+</body>
+</html>
