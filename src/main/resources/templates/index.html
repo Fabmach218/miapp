@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+xmlns:th="https://www.thymeleaf.org"
+th:replace="~{fragments/layout :: layout (~{::body},'home')}">
 <body>
-    Bienvenido!!!
+    <h1>Bienvenido!!!</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, esse quos corporis mollitia ex sapiente, magnam repudiandae quidem nobis non minima ea dolorum aut inventore labore voluptates! Ullam, rerum odio!</p>
 </body>
 </html>

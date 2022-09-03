@@ -1,21 +1,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+xmlns:th="https://www.thymeleaf.org"
+th:replace="~{fragments/layout :: layout (~{::body},'calculadora')}">
 <body>
-    <form th:action="@{/calcular}" th:object="${calculadora}" method="post">
-        <input type="number" th:field="*{operando1}"/>
-        <input type="number" th:field="*{operando2}"/>
-        <select th:field="*{operador}">
+    <form th:action="@{/calculadora/}" th:object="${calculadora}" method="get">
+        <input type="number" class="form-control" th:field="*{operando1}"/>
+        <input type="number" class="form-control" th:field="*{operando2}"/>
+        <select class="form-control" th:field="*{operador}">
+            <option value="">- Seleccione -</option>
             <option value="+">Suma</option>
             <option value="-">Resta</option>
         </select>
-        <input type="submit" value="Calcular"/>
+        <input class="btn btn-primary" type="submit" value="Calcular"/>
     </form>
 
     <p th:text="${resultado}"></p>
