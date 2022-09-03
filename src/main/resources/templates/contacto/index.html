@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="https://www.thymeleaf.org"
+th:replace="~{fragments/layout :: layout (~{::body},'contacto')}">
+<body>
+
+    <h1>Lista de Contactos</h1>
+    
+    <a class="btn btn-primary" th:href="@{/contacto/create}">Create</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Razón</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="contacto : ${listaContactos}">
+                <td th:text="${contacto.id}"></td>
+                <td th:text="${contacto.nombre}"></td>
+                <td th:text="${contacto.email}"></td>
+                <td th:text="${contacto.telefono}"></td>
+                <td th:text="${contacto.razon}"></td>
+                <td>
+                    <a th:href="@{/edit/__${contacto.id}__}">Editar</a>
+                    <a th:href="@{/delete/__${contacto.id}__}" onclick="return confirm('¿Seguro que desea eliminar?')">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
