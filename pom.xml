@@ -94,6 +94,11 @@
 			<artifactId>jquery-maskmoney</artifactId>
 			<version>3.0.2</version>
 		</dependency>
+		<dependency>
+			<groupId>org.webjars.npm</groupId>
+			<artifactId>sweetalert2</artifactId>
+			<version>11.4.33</version>
+		</dependency>
 	<!-- end of webjars -->
 
 	<!-- data -->

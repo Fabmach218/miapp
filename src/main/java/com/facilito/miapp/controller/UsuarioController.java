@@ -48,7 +48,7 @@ public class UsuarioController {
                     
                     request.getSession().setAttribute("usuario", objUser);
                     
-                    page="index";  
+                    page="redirect:/";  
                 }else{
                     model.addAttribute("mensaje", "Password no coincide");  
                 }

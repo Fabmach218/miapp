@@ -38,11 +38,12 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <th:block th:if="${session.usuario==null}">
-              <li class="nav-item"><a href="/cliente/create"><span class="glyphicon glyphicon-user"></span>Registrarse</a></li>
-              <li class="nav-item"><a href="/usuario/login"><span class="glyphicon glyphicon-log-in"></span>Iniciar Sesión</a></li>
+              <li class="nav-item"><a class="nav-link text-dark" href="/cliente/create"><span class="glyphicon glyphicon-user"></span>Registrarse</a></li>
+              <li class="nav-item"><a class="nav-link text-dark" href="/usuario/login"><span class="glyphicon glyphicon-log-in"></span>Iniciar Sesión</a></li>
             </th:block>   
             <th:block th:if="${session.usuario!=null}">
-              <li class="nav-item"><a href="/usuario/logout"><span class="glyphicon glyphicon-log-in"></span>Cerrar Sesión</a></li>
+              <li class="nav-item"><a class="nav-link text-dark" style="cursor:pointer;" onclick="cerrarSesion();"><span class="glyphicon glyphicon-log-in"></span>Cerrar Sesión</a></li>
+              <a id="btn-cerrar-sesion" href="/usuario/logout" hidden></a>
             </th:block>                     
           </ul>                
         </div>
@@ -68,7 +69,25 @@
     <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     <script th:src="@{/webjars/bootstrap-datepicker/js/bootstrap-datepicker.min.js}"></script>
-    <script th:src="@{/webjars/jquery.inputmask/jquery.inputmask.min.js}"></script>    
+    <script th:src="@{/webjars/jquery.inputmask/jquery.inputmask.min.js}"></script> 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+
+      function cerrarSesion(){
+        Swal.fire({
+          title: '¿Desea cerrar su sesión?',
+          showCancelButton: true,
+          confirmButtonText: 'Sí',
+          cancelButtonText: 'Cancelar',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            document.getElementById('btn-cerrar-sesion').click();
+          }
+        });
+      }
+
+    </script>
 
   </body>
   
