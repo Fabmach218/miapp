@@ -32,7 +32,19 @@
             <li class="nav-item active">
               <a class="nav-link" th:href="@{/contacto/}">Contacto</a>
             </li>
-          </ul>      
+            <li class="nav-item active">
+              <a class="nav-link" th:href="@{/catalogo/}">Catalogo</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <th:block th:if="${session.usuario==null}">
+              <li class="nav-item"><a href="/cliente/create"><span class="glyphicon glyphicon-user"></span>Registrarse</a></li>
+              <li class="nav-item"><a href="/usuario/login"><span class="glyphicon glyphicon-log-in"></span>Iniciar Sesión</a></li>
+            </th:block>   
+            <th:block th:if="${session.usuario!=null}">
+              <li class="nav-item"><a href="/usuario/logout"><span class="glyphicon glyphicon-log-in"></span>Cerrar Sesión</a></li>
+            </th:block>                     
+          </ul>                
         </div>
     </nav> 
     
