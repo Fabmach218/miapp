@@ -1,4 +1,4 @@
-package com.facilito.miapp.controller;
+package com.facilito.miapp.controller.web;
 
 import javax.validation.Valid;
 
@@ -14,7 +14,7 @@ import com.facilito.miapp.repository.ClienteRepository;
 import com.facilito.miapp.repository.UsuarioRepository;
 
 @Controller
-@RequestMapping("/cliente")
+@RequestMapping("cliente")
 public class ClienteController {
     
     private final ClienteRepository _dataClientes;

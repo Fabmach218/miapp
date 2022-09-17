@@ -1,4 +1,4 @@
-package com.facilito.miapp.controller;
+package com.facilito.miapp.controller.web;
 
 import java.util.Optional;
 
@@ -15,7 +15,7 @@ import com.facilito.miapp.model.Usuario;
 import com.facilito.miapp.repository.UsuarioRepository;
 
 @Controller
-@RequestMapping("/usuario")
+@RequestMapping("usuario")
 public class UsuarioController {
     
     private final UsuarioRepository _dataUsuarios;

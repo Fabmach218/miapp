@@ -1,4 +1,4 @@
-package com.facilito.miapp.controller;
+package com.facilito.miapp.controller.web;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 
 @Controller
-@RequestMapping("/catalogo")
+@RequestMapping("catalogo")
 public class CatalogoController{
  
     private final ProductoRepository _dataProductos;

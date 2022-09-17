@@ -1,4 +1,4 @@
-package com.facilito.miapp.controller;
+package com.facilito.miapp.controller.web;
 
 import javax.validation.Valid;
 
@@ -14,7 +14,7 @@ import com.facilito.miapp.repository.ContactoRepository;
 import java.util.List;
 
 @Controller
-@RequestMapping("/contacto")
+@RequestMapping("contacto")
 public class ContactoController {
     
     private final ContactoRepository _dataContactos;

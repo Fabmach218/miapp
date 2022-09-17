@@ -1,4 +1,4 @@
-package com.facilito.miapp.controller;
+package com.facilito.miapp.controller.web;
 
 import javax.validation.Valid;
 
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.facilito.miapp.model.Calculadora;
 
 @Controller
-@RequestMapping("/calculadora")
+@RequestMapping("calculadora")
 public class CalculadoraController {
     
     @RequestMapping(value = "/", method = RequestMethod.GET)
