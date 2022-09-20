@@ -13,7 +13,7 @@
   <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css} " />
   <link th:rel="stylesheet" th:href="@{/webjars/bootstrap-datepicker/css/bootstrap-datepicker.css}" />
   <link th:rel="stylesheet" th:href="@{/webjars/bootstrap-datepicker/css/bootstrap-datepicker.standalone.css}" />
-  <link th:rel="stylesheet" th:href="@{/resources/css/w3.css}" />
+  <!--<link th:rel="stylesheet" th:href="@{/resources/css/w3.css}" />-->
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -79,7 +79,7 @@
           title: '¿Desea cerrar su sesión?',
           showCancelButton: true,
           confirmButtonText: 'Sí',
-          cancelButtonText: 'Cancelar',
+          cancelButtonText: 'Cancelar'
         }).then((result) => {
           if (result.isConfirmed) {
             document.getElementById('btn-cerrar-sesion').click();

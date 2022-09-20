@@ -37,19 +37,16 @@ public class UsuarioController {
         model.addAttribute("title", "Inicio de sesión");
         model.addAttribute("usuario", new Usuario());
         if(result.hasFieldErrors()) {
-            model.addAttribute("usuario", "No se ha podido loguear");
+            model.addAttribute("mensaje", "No se ha podido loguear");
         }else{
             Optional<Usuario> user = _dataUsuarios.findById(objUser.getUserID());
       
             if(user.isPresent()){
                 if(user.get().getPassword().equals(objUser.getPassword())){
-                    model.addAttribute("usuario",user.get());
-                    model.addAttribute("mensaje", "Usuario existe");
-                    
                     request.getSession().setAttribute("usuario", objUser);
-                    
                     page="redirect:/";  
                 }else{
+                    model.addAttribute("usuario",user.get());
                     model.addAttribute("mensaje", "Password no coincide");  
                 }
             }else{
