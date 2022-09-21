@@ -5,24 +5,45 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.facilito.miapp.model.Usuario;
-import com.facilito.miapp.repository.UsuarioRepository;
+import com.facilito.miapp.service.IUsuarioService;
 
 @Controller
 @RequestMapping("usuario")
 public class UsuarioController {
     
-    private final UsuarioRepository _dataUsuarios;
+    @Autowired
+    private IUsuarioService _dataUsuarios;  
 
-    public UsuarioController(UsuarioRepository dataUsuarios){
-        _dataUsuarios = dataUsuarios;
-    }      
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public String create(Model model) {
+        model.addAttribute("title", "Registro de usuario");
+        model.addAttribute("usuario", new Usuario());
+        return "usuario/create";
+    } 
+    
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String createPost(Model model, @Valid @ModelAttribute Usuario usuario, BindingResult result, RedirectAttributes redirectAttributes ){
+        model.addAttribute("title", "Registro de usuario");
+        if(result.hasFieldErrors()) {
+            redirectAttributes.addFlashAttribute("mensaje", "No se registro un cliente");
+            return "redirect:/usuario/create";
+        }else{
+            usuario.setTipoUsuario("C");
+            _dataUsuarios.registrar(usuario);
+            model.addAttribute("usuario", usuario);
+        }
+        return "redirect:/usuario/login";
+    }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model) {
@@ -30,36 +51,5 @@ public class UsuarioController {
         model.addAttribute("usuario", new Usuario());
         return "usuario/login";
     }  
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginSubmitForm(Model model, @Valid Usuario objUser, HttpServletRequest request, BindingResult result){
-        String page="usuario/login";
-        model.addAttribute("title", "Inicio de sesión");
-        model.addAttribute("usuario", new Usuario());
-        if(result.hasFieldErrors()) {
-            model.addAttribute("mensaje", "No se ha podido loguear");
-        }else{
-            Optional<Usuario> user = _dataUsuarios.findById(objUser.getUserID());
-      
-            if(user.isPresent()){
-                if(user.get().getPassword().equals(objUser.getPassword())){
-                    request.getSession().setAttribute("usuario", objUser);
-                    page="redirect:/";  
-                }else{
-                    model.addAttribute("usuario",user.get());
-                    model.addAttribute("mensaje", "Password no coincide");  
-                }
-            }else{
-                model.addAttribute("mensaje", "Usuario no existe");
-            }
-        }
-        return page;
-    }
-
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logoutSession(HttpServletRequest request) {
-		request.getSession().invalidate();
-		return "redirect:/";
-	}
     
 }

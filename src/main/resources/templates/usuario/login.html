@@ -7,6 +7,8 @@
  
     <div class="container">
 
+        <div th:if="${param.error}" class="alert alert-danger mb-3">Credenciales incorrectas</div>
+
         <div class="row">
           <div class="col-sm-10 mt-5">
             <div class="form-group row">
@@ -15,10 +17,10 @@
             <form th:object="${usuario}" th:action="@{/usuario/login}" method="post">
               <div class="form-group row">
                 <div class="col-sm-2">
-                  <label for="userID">Usuario</label>
+                  <label for="username">Usuario</label>
                 </div>
                 <div class="col-sm-4">
-                  <input type="text" class="form-control" th:field="*{userID}" required/>
+                  <input type="text" class="form-control" th:field="*{username}" required/>
                 </div>
               </div>
               <div class="form-group row">

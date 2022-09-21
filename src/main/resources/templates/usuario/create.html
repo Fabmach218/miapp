@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html xmlns:th="https://www.thymeleaf.org" 
-    th:replace="~{fragments/layout :: layout (~{::body},'cliente')}">
+    th:replace="~{fragments/layout :: layout (~{::body},'usuario')}">
 
 <body>
  
@@ -12,7 +12,7 @@
             <div class="form-group row">
               <h1>Cliente</h1>
             </div>
-            <form th:object="${cliente}" th:action="@{/cliente/create}" method="post">
+            <form th:object="${usuario}" th:action="@{/usuario/create}" method="post">
               <div class="form-group row">
                 <div class="col-sm-2">
                   <label for="nombres">Nombres</label>
@@ -78,18 +78,18 @@
               </div>              
               <div class="form-group row">
                 <div class="col-sm-2">
-                  <label for="usuario.userID">Usuario</label>
+                  <label for="username">Usuario</label>
                 </div>
                 <div class="col-sm-2">
-                  <input type="text" th:field="*{usuario.userID}" />
+                  <input type="text" th:field="*{username}" />
                 </div>
               </div>
               <div class="form-group row">
                 <div class="col-sm-2">
-                  <label for="usuario.password">Password</label>
+                  <label for="password">Password</label>
                 </div>
                 <div class="col-sm-2">
-                  <input type="password" th:field="*{usuario.password}" />
+                  <input type="password" th:field="*{password}" />
                 </div>
               </div>              
               <div class="form-group row">

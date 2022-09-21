@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html th:fragment="layout (template, menu)">
+<html th:fragment="layout (template, menu)" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -37,11 +37,11 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <th:block th:if="${session.usuario==null}">
-              <li class="nav-item"><a class="nav-link text-dark" href="/cliente/create"><span class="glyphicon glyphicon-user"></span>Registrarse</a></li>
+            <th:block sec:authorize="!isAuthenticated()">
+              <li class="nav-item"><a class="nav-link text-dark" href="/usuario/create"><span class="glyphicon glyphicon-user"></span>Registrarse</a></li>
               <li class="nav-item"><a class="nav-link text-dark" href="/usuario/login"><span class="glyphicon glyphicon-log-in"></span>Iniciar Sesión</a></li>
             </th:block>   
-            <th:block th:if="${session.usuario!=null}">
+            <th:block sec:authorize="isAuthenticated()">
               <li class="nav-item"><a class="nav-link text-dark" style="cursor:pointer;" onclick="cerrarSesion();"><span class="glyphicon glyphicon-log-in"></span>Cerrar Sesión</a></li>
               <a id="btn-cerrar-sesion" href="/usuario/logout" hidden></a>
             </th:block>                     
