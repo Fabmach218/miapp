@@ -43,7 +43,7 @@
             </th:block>   
             <th:block sec:authorize="isAuthenticated()">
               <li class="nav-item"><a class="nav-link text-dark" style="cursor:pointer;" onclick="cerrarSesion();"><span class="glyphicon glyphicon-log-in"></span>Cerrar Sesión</a></li>
-              <a id="btn-cerrar-sesion" href="/usuario/logout" hidden></a>
+              <form id="cerrar-sesion" th:action="@{/usuario/logout}" method="post" hidden></form>
             </th:block>                     
           </ul>                
         </div>
@@ -82,7 +82,7 @@
           cancelButtonText: 'Cancelar'
         }).then((result) => {
           if (result.isConfirmed) {
-            document.getElementById('btn-cerrar-sesion').click();
+            document.getElementById('cerrar-sesion').submit();
           }
         });
       }
