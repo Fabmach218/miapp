@@ -2,6 +2,7 @@ package com.facilito.miapp.controller.web;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,18 +14,19 @@ import com.facilito.miapp.service.IUsuarioService;
 @Controller
 public class HomeController {
     
+    @Autowired
     private IUsuarioService _dataUsuarios;
 
     @GetMapping({"/", "/index"})
-    public String index(Model model){
+    public String index(Authentication auth, HttpSession session, Model model){
         
-        /*String username = auth.getName();
+        String username = auth.getName();
         
         if(session.getAttribute("usuario") == null){
             Usuario usuario = _dataUsuarios.findByUsername(username);
             usuario.setPassword(null);
             session.setAttribute("usuario", usuario);
-        }*/
+        }
 
         model.addAttribute("title", "Inicio");
         return "index";
