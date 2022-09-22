@@ -12,45 +12,49 @@
             <div class="form-group row">
               <h1>Cliente</h1>
             </div>
-            <form th:object="${usuario}" th:action="@{/usuario/create}" method="post">
+            <form class="form-validate" th:object="${usuario}" th:action="@{/usuario/create}" method="post">
               <div class="form-group row">
-                <div class="col-sm-2">
+                <div class="col-sm-4">
                   <label for="nombres">Nombres</label>
                 </div>
-                <div class="col-sm-2">
-                  <input type="text" th:field="*{nombres}" />
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" th:field="*{nombres}" />
+                  <small class="form-text text-danger" th:if="${#fields.hasErrors('nombres')}" th:errors="*{nombres}"></small>
                 </div>
               </div>
               <div class="form-group row">
-                <div class="col-sm-2">
+                <div class="col-sm-4">
                   <label for="apellidos">Apellidos</label>
                 </div>
-                <div class="col-sm-2">
-                  <input type="text" th:field="*{apellidos}" />
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" th:field="*{apellidos}" />
+                  <small class="form-text text-danger" th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}"></small>
                 </div>
               </div>              
               <div class="form-group row">
-                <div class="col-sm-2">
+                <div class="col-sm-4">
                   <label for="email">Email</label>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-4">
                   <input type="text" data-inputmask="'alias': 'email'"
-                  autocomplete="off" th:field="*{email}" />
+                  autocomplete="off" class="form-control" th:field="*{email}" />
+                  <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
                 </div>
               </div>
               <div class="form-group row">
-                <div class="col-sm-2">
+                <div class="col-sm-4">
                   <label for="telefono">Teléfono</label>
                 </div>
-                <div class="col-sm-2">
-                  <input type="text" data-inputmask="'mask': '999-999-999'" th:field="*{telefono}" />
+                <div class="col-sm-4">
+                  <input type="text" data-inputmask="'mask': '999-999-999'" class="form-control" th:field="*{telefono}" />
+                  <small class="form-text text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></small>
                 </div>
               </div>
               <div class="form-group row">
-                <div class="col-sm-2">
+                <div class="col-sm-4">
                   <label for="fechaNacimiento">Fecha de nacimiento</label>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                   <div class="input-group date">
                     <input type="text" class="form-control" id="fechaNacimiento" 
                       data-inputmask="'alias': 'datetime', 'inputFormat': 'dd/MM/yyyy'" 
@@ -58,12 +62,13 @@
                     <div class="input-group-append">
                       <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                     </div>
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></small>
                   </div>
                 </div>
               </div>
               <div class="form-group row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
                   <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="genderM" name="genderM" class="custom-control-input" value="M"
                       th:field="*{genero}">
@@ -74,32 +79,35 @@
                       th:field="*{genero}">
                     <label class="custom-control-label" for="genderF">Femenino</label>
                   </div>
+                  <small class="form-text text-danger" th:if="${#fields.hasErrors('genero')}" th:errors="*{genero}"></small>
                 </div>
               </div>              
               <div class="form-group row">
-                <div class="col-sm-2">
+                <div class="col-sm-4">
                   <label for="username">Usuario</label>
                 </div>
-                <div class="col-sm-2">
-                  <input type="text" th:field="*{username}" />
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" th:field="*{username}" />
+                  <small class="form-text text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></small>
                 </div>
               </div>
               <div class="form-group row">
-                <div class="col-sm-2">
+                <div class="col-sm-4">
                   <label for="password">Password</label>
                 </div>
-                <div class="col-sm-2">
-                  <input type="password" th:field="*{password}" />
+                <div class="col-sm-4">
+                  <input type="password" class="form-control" th:field="*{password}" />
+                  <small class="form-text text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
                 </div>
-              </div>              
+              </div>
+              <input type="text" th:field="*{tipoUsuario}" hidden>              
               <div class="form-group row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
                   <button th:with="text='Registrar'" class="btn btn-primary" type="submit" th:text="${text}"/>
                 </div>
               </div>
             </form>
-            <p th:text="${mensaje}" />
           </div>
         </div>
       </div>

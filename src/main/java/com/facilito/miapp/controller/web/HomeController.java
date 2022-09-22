@@ -19,15 +19,14 @@ public class HomeController {
 
     @GetMapping({"/", "/index"})
     public String index(Authentication auth, HttpSession session, Model model){
-        
+
         if(auth != null){
             String username = auth.getName();
-            
             Usuario usuario = _dataUsuarios.findByUsername(username);
             usuario.setPassword(null);
             session.setAttribute("usuario", usuario);
         }
-
+        
         model.addAttribute("title", "Inicio");
         return "index";
     }

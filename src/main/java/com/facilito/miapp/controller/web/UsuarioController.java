@@ -35,7 +35,6 @@ public class UsuarioController {
             redirectAttributes.addFlashAttribute("mensaje", "No se registro un cliente");
             return "redirect:/usuario/create";
         }else{
-            usuario.setTipoUsuario("C");
             _dataUsuarios.registrar(usuario);
             model.addAttribute("usuario", usuario);
         }
