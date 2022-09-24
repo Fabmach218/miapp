@@ -3,7 +3,23 @@
 xmlns:th="https://www.thymeleaf.org"
 th:replace="~{fragments/layout :: layout (~{::body},'home')}">
 <body>
-    <h1>Bienvenido!!!</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, esse quos corporis mollitia ex sapiente, magnam repudiandae quidem nobis non minima ea dolorum aut inventore labore voluptates! Ullam, rerum odio!</p>
+
+    <div class="container">
+        
+        <div class="float-right">
+            <span>Tipo de cambio actual</span>
+            <br>
+            <span th:text="'Compra: S/. ' + ${compra} + ' - Venta: S/. ' + ${venta}"></span>
+        </div>
+
+        <br>
+
+        <div>
+            <h1>Bienvenido!!!</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, esse quos corporis mollitia ex sapiente, magnam repudiandae quidem nobis non minima ea dolorum aut inventore labore voluptates! Ullam, rerum odio!</p>
+        </div>
+
+    </div>
+
 </body>
 </html>
