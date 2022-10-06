@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.facilito.miapp.integration.sendgrid.SendGridAPI;
 import com.facilito.miapp.model.TipoCambio;
 import com.facilito.miapp.model.Usuario;
 import com.facilito.miapp.repository.TipoCambioRepository;
@@ -24,7 +25,7 @@ public class HomeController {
 
     @GetMapping({"/", "/index"})
     public String index(Authentication auth, HttpSession session, Model model){
-
+        
         if(auth != null){
             String username = auth.getName();
             Usuario usuario = _dataUsuarios.findByUsername(username);

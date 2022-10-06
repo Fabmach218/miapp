@@ -4,5 +4,30 @@ xmlns:th="https://www.thymeleaf.org"
 th:replace="~{fragments/layout :: layout (~{::body},'admin')}">
 <body>
     <h1>Soy admin</h1>
+
+    <a th:href="@{/admin/enviarCorreo}">Enviar un correo de prueba</a>
+    <br>
+    <a th:href="@{/admin/crearTarjeta}">Crear una tarjeta random</a>
+    <br>
+    <a th:href="@{/admin/pagar}">Ir a la pasarela de pagos</a>
+
+    <script th:inline="javascript">
+    
+        /*<![CDATA[*/
+        var status = /*[[${status}]]*/ "";
+        var mensaje = /*[[${mensaje}]]*/ "";
+        /*]]>*/
+        
+        window.addEventListener('load', function() {
+          if(status !== null && mensaje !== null){
+            Swal.fire({
+              icon: status,
+              title: mensaje
+            });
+          }
+        });
+      
+      </script>
+
 </body>
 </html>
