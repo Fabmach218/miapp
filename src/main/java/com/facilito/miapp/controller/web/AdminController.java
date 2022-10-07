@@ -116,6 +116,7 @@ public class AdminController {
         tarjetaForm.setMoneda(moneda);
         tarjetaForm.setMonto(monto);
 
+        model.addAttribute("title", "Pago");
         model.addAttribute("tarjetaForm", tarjetaForm);
         return "admin/pasarela";
 
@@ -136,12 +137,14 @@ public class AdminController {
             ModelRespuestaPago respuesta = responseEntity.getBody();
 
             if(respuesta.getStatus().equals("reload")){
+                model.addAttribute("title", "Pago");
                 model.addAttribute("mensajeRecarga", respuesta.getMensaje());
                 model.addAttribute("tarjetaForm", respuesta.getTarjeta());
                 return "admin/pasarela";
             }
 
             if(respuesta.getStatus().equals("error")){
+                model.addAttribute("title", "Pago");
                 model.addAttribute("mensajeError", respuesta.getMensaje());
                 model.addAttribute("tarjetaForm", respuesta.getTarjeta());
                 return "admin/pasarela";

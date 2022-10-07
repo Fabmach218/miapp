@@ -1,5 +1,6 @@
 package com.facilito.miapp.controller.rest;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.facilito.miapp.model.Pago;
 import com.facilito.miapp.model.Tarjeta;
 import com.facilito.miapp.model.TipoCambio;
 import com.facilito.miapp.model.dto.ModelFormTarjeta;
+import com.facilito.miapp.repository.PagoRepository;
 import com.facilito.miapp.repository.TarjetaRepository;
 import com.facilito.miapp.repository.TipoCambioRepository;
 
@@ -27,6 +30,9 @@ public class TarjetaRestController {
 
     @Autowired
     private TipoCambioRepository _dataTipoCambio;
+
+    @Autowired
+    private PagoRepository _dataPagos;
 
     @PostMapping(value = "/pagar", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String, Object>> pagar(@RequestBody ModelFormTarjeta tarjetaForm){
@@ -75,6 +81,13 @@ public class TarjetaRestController {
 
                 if(tarjeta.getMonto() >= tarjetaForm.getMonto()){
 
+                    Pago p = new Pago();
+
+                    p.setMonto(tarjetaForm.getMonto());
+                    p.setTarjeta(tarjeta);
+                    p.setFechaHora(new Date());
+
+                    _dataPagos.save(p);
                     tarjeta.setMonto(tarjeta.getMonto() - tarjetaForm.getMonto()); //Se debita el pago y se hace el cobro a la tarjeta.
                     _dataTarjetas.save(tarjeta);
                     status = "success";
